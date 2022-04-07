@@ -13,7 +13,9 @@ namespace ClassLabNu
         private int id;
         private string nome;
         private string email;
+        private Nivel nivel;
         private string password;
+        
         private bool ativo;
 
         // propriedades
@@ -29,6 +31,7 @@ namespace ClassLabNu
             }
 
         }
+        public Nivel Nivel { get { return nivel; } }
         public bool Ativo { get { return ativo; } set { ativo = value; } }
 
 
@@ -37,20 +40,22 @@ namespace ClassLabNu
         {
 
         }
-        public Usuario(string nome, string email, string password)
+        public Usuario(string nome, string email, Nivel nivel, string password)
         {
             this.nome = nome;
             this.email = email;
             this.password = password;
+            this.nivel = nivel; 
             ativo = true;
         }
 
-        public Usuario(int id, string nome, string email, string password, bool ativo)
+        public Usuario(int id, string nome, string email, string password, Nivel nivel, bool ativo)
         {
             this.id = id;
             this.nome = nome;
             this.email = email;
             this.password = password;
+            this.nivel = nivel;  
             this.ativo = ativo;
         }
         // métodos da classe
