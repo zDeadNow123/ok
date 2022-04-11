@@ -8,7 +8,7 @@ namespace ClassLabNu
 {
     public class Cliente
     {
-        // atributos
+        // atributos /
         private int id;
         private string nome;
         private string cpf;
