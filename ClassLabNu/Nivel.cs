@@ -25,6 +25,7 @@ namespace ClassLabNu
         public Nivel()
         {
         }
+
         public Nivel(string nome, string sigla)
         {
             this.nome = nome;

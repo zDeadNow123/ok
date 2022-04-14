@@ -3,12 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
-namespace ClassLabNu
-{
+namespace ClassLabNu {
+
     // Documentação de classes de projeto. - XML Docs 
     public class Usuario
     {
+
+        public struct socorro {
+
+            private int id;
+            private string nome, email, senha, nivel;
+            private bool ativo;
+
+            public int Id { get { return id; } }
+            public string Nome { get { return nome; } }
+            public string Email { get { return email; } }
+            public string Password { get { return senha; } }
+            public string Nivel { get { return nivel; } }
+            public bool Ativo { get { return ativo; } }
+
+            public socorro(int id, string nome, string email, string senha, string nivel, bool ativo) {
+                this.id = id;
+                this.nome = nome;
+                this.email = email;
+                this.senha = senha;
+                this.nivel = nivel;
+                this.ativo = ativo;
+            }
+
+        }
+
         // atributos (campos)
         private int id;
         private string nome;
@@ -19,7 +45,7 @@ namespace ClassLabNu
         private bool ativo;
 
         // propriedades
-        public int Id { get { return id; } }
+        public int Id { get { return id; } set { id = value; } }
         public string Nome { get { return nome; } }
         public string Email { get { return email; } set { email = value; } }
         public string Password
@@ -59,11 +85,52 @@ namespace ClassLabNu
             this.ativo = ativo;
         }
         // métodos da classe
-        public int Inserir()
-        {
-            // chamadas de banco e gravo o registro
-            return id;
+        public void Inserir() {
+
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_usuario_inserir";
+            cmd.Parameters.AddWithValue("_nome", Nome);
+            cmd.Parameters.AddWithValue("_email", Email);
+            cmd.Parameters.AddWithValue("_senha", Password);
+            cmd.Parameters.AddWithValue("_nivel", $"{Nivel.Nome}, {Nivel.Sigla}");
+
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
+
+            cmd.Connection.Close();
         }
+
+        public static List<socorro> Listar() {
+            List<socorro> usuarios = new List<socorro>();
+
+            // Abrir o banco de dados
+            var cmd = Banco.Abrir();
+
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from usuarios";
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read()) {
+
+                
+                usuarios.Add(
+                    new socorro (
+                        dr.GetInt32(0), // ID
+                        dr.GetString(1), // NOME
+                        dr.GetString(2), // EMAIL
+                        dr.GetString(3), // SENHA
+                        dr.GetString(4), // NIVEL
+                        dr.GetBoolean(5) // ATIVO
+                    )
+                );
+                
+
+            } // END WHILE
+
+            return usuarios;
+        }
+
         public static bool EfetuarLogin(string email, string senha) 
         {
             // realiza validação e devolve verdadeiro ou falso
