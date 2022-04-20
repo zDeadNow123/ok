@@ -89,20 +89,65 @@ namespace ClassLabNu
 
             cmd.Connection.Close();
         }
-        public bool Alterar(Cliente cliente)
+        public bool Alterar(int _id, string _nome = default, string _email = default)
         {
-            return true;
+
+            try 
+            {
+                var cmd = Banco.Abrir();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_cliente_alterar";
+                cmd.Parameters.AddWithValue("_id", _id);
+                cmd.Parameters.AddWithValue("_nome", _nome);
+                cmd.Parameters.AddWithValue("_email", _email);
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+        
+            }
+
         }
+
         public static Cliente ConsultarPorId(int _id) 
         { 
             Cliente cliente = new Cliente();
-            // cenas dos próximos episódios...
+            
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from clientes where idCli = " + _id;
+            
+            var dr = cmd.ExecuteReader();
+
+            while(dr.Read())
+            {
+                cliente.Id = Convert.ToInt32(dr["idCli"]);
+                cliente.Nome = dr["nome"].ToString();
+                cliente.Cpf = dr.GetString("cpf");
+                cliente.Email = dr.GetString("email");
+                cliente.DataCad = dr.GetDateTime("datacad");
+                cliente.Ativo = dr.GetBoolean("ativo");
+        }
+
             return cliente;
         }
         public static Cliente ConsultarPorCpf(string _cpf)
         {
             Cliente cliente = new Cliente();
-            // cenas dos próximos episódios...
+
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "select * from clientes where cpf = " + _cpf;
+            
+            var dr = cmd.ExecuteReader();
+
+            while(dr.Read())
+            {
+                cliente.Cpf = dr.GetString("cpf");
+        }
             return cliente;
         }
         public static List<Cliente> Listar()
@@ -113,7 +158,7 @@ namespace ClassLabNu
             cmd.CommandType = CommandType.Text;
             //cmd.CommandText = "select * from clientes";
             //cmd.CommandText = "select * from clientes order by 2"; // Ordenar a partir da coluna 2
-            cmd.CommandText = "select * from clientes";
+            cmd.CommandText = "select * from clientes where ativo = 1";
             var dr = cmd.ExecuteReader();
 
             while (dr.Read()) {
@@ -132,6 +177,14 @@ namespace ClassLabNu
             } // END WHILE
 
             return clientes;
+        }
+
+        public void Desativar(int _id) {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update clientes set ativo = 0 where idCli = " + _id;
+            cmd.ExecuteReader();
+            cmd.Connection.Close();
         }
 
     }

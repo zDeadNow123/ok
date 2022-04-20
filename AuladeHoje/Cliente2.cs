@@ -39,15 +39,90 @@ namespace AuladeHoje {
         }
 
         private void btnListar_Click(object sender, EventArgs e) {
-            lstClientes.Items.Clear();
+            
+            dgvClientes.Rows.Clear();
             List<Cliente> listaDeClientes = Cliente.Listar();
-            foreach (Cliente cliente in listaDeClientes) {
-                lstClientes.Items.Add($"ID: {cliente.Id} NOME: {cliente.Nome} CPF: {cliente.Cpf}");
+
+            for(int i = 0; i < listaDeClientes.Count; i++) {
+                dgvClientes.Rows.Add(
+                    listaDeClientes[i].Id,
+                    listaDeClientes[i].Nome,
+                    listaDeClientes[i].Cpf,
+                    listaDeClientes[i].Email,
+                    listaDeClientes[i].Ativo
+                );
             }
+
         }
 
         private void lstClientes_SelectedIndexChanged(object sender, EventArgs e) {
 
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e) {
+
+            if (btnBuscar.Text != "...") goto up;
+            if (btnBuscar.Text == "...") goto down;
+
+            up:
+            Cliente qualquercoisa = Cliente.ConsultarPorId(int.Parse(txtId.Text));
+
+            try {
+                txtNome.Text = qualquercoisa.Nome.ToString();
+                txtCpf.Text = qualquercoisa.Cpf.ToString();
+                txtEmail.Text = qualquercoisa.Email.ToString();
+                dtpDatacad.Text = qualquercoisa.DataCad.ToString();
+                chkAtivo.Checked = qualquercoisa.Ativo;
+
+                btnBuscar.Text = "...";
+                txtId.ReadOnly = true;
+                txtCpf.ReadOnly = false;
+                btnAlterar.Enabled = false;
+
+            }
+
+            catch { }
+
+            return;
+
+
+
+            down:
+            txtId.ReadOnly = false;
+            btnAlterar.Enabled = true;
+            txtCpf.ReadOnly = true;
+            txtId.Focus();
+            btnBuscar.Text = "Buscar";
+            /*
+            if (btnBuscar.Text == "...") {
+                txtId.ReadOnly = false;
+                txtId.Focus();
+                btnBuscar.Text = "Buscar";
+            } else {
+
+                Cliente qualquercoisa = Cliente.ConsultarPorId(int.Parse(txtId.Text));
+
+                try {
+
+                }
+                catch {}
+            }
+            */
+
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e) {
+
+            Cliente cliente = new Cliente();
+
+            if(cliente.Alterar(int.Parse(txtId.Text), txtNome.Text, txtEmail.Text)) {
+                MessageBox.Show("Cliente alterado com sucesso!");
+
+            } else {
+                MessageBox.Show("Falha na alteração!");
+            }
+
+        }
+
     }
 }
