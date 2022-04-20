@@ -45,6 +45,25 @@ namespace ClassLabNu {
             cmd.Connection.Close();
         }
 
+        public bool Alterar(string _nome, string _sigla) {
+
+            try {
+                var cmd = Banco.Abrir();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_tipo_alterar";
+                cmd.Parameters.AddWithValue("_nome", _nome);
+                cmd.Parameters.AddWithValue("_sigla", _sigla);
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+                return true;
+            }
+            catch {
+                return false;
+
+            }
+
+        }
+
         public static List<Tipo> ListarTodos() {
             List<Tipo> tipos = new List<Tipo>();
 

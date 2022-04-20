@@ -294,7 +294,6 @@ namespace ClassLabNu
 
             while (dr.Read()) {
 
-                //if (dr.GetString(1) == _descricao)
                 produtos.Add(
                     new Produto(
                         dr.GetInt32(0), // ID
