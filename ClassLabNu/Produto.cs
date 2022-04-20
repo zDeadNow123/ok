@@ -227,11 +227,36 @@ namespace ClassLabNu
 
 
 
-        public Produto BuscarPorId(int _id)
+        public List<Produto> BuscarPorId(int _id)
         {
-            Produto produto = new Produto();
-            // conecta banco realiza consulta por Id do produto
-            return produto;
+            List<Produto> produtos = new List<Produto>();
+            // conecta banco e realiza consulta por parte da descriação do produtos
+
+            // Abrir o banco de dados
+            var cmd = Banco.Abrir();
+
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"select * from produtos where id = {_id}";
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read()) {
+
+                produtos.Add(
+                    new Produto(
+                        dr.GetInt32(0), // ID
+                        dr.GetString(1), // DESCRICAO
+                        dr.GetDouble(2), // UNIDADE
+                        dr.GetString(3), // CODBAR
+                        dr.GetDouble(4), // VALOR
+                        dr.GetDouble(5), // DESCONTO
+                        dr.GetBoolean(6) // DESCONTINUADO
+                     )
+                );
+
+            } // END WHILE
+
+            return produtos;
         }
 
 
@@ -253,11 +278,36 @@ namespace ClassLabNu
 
 
 
-        public Produto BuscarPorCodBar(string _codBar)
+        public List<Produto> BuscarPorCodBar(string _codBar)
         {
-            Produto produto = new Produto();
-            // conecta banco e realiza consulta por código de barras do produtos
-            return produto;
+            List<Produto> produtos = new List<Produto>();
+            // conecta banco e realiza consulta por parte da descriação do produtos
+
+            // Abrir o banco de dados
+            var cmd = Banco.Abrir();
+
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"select * from produtos where codbar = {_codBar}";
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read()) {
+
+                produtos.Add(
+                    new Produto(
+                        dr.GetInt32(0), // ID
+                        dr.GetString(1), // DESCRICAO
+                        dr.GetDouble(2), // UNIDADE
+                        dr.GetString(3), // CODBAR
+                        dr.GetDouble(4), // VALOR
+                        dr.GetDouble(5), // DESCONTO
+                        dr.GetBoolean(6) // DESCONTINUADO
+                     )
+                );
+
+            } // END WHILE
+
+            return produtos;
         }
 
 
