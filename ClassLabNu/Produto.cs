@@ -283,6 +283,32 @@ namespace ClassLabNu
         {
             List<Produto> produtos = new List<Produto>();
             // conecta banco e realiza consulta por parte da descriação do produtos
+
+            // Abrir o banco de dados
+            var cmd = Banco.Abrir();
+
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"select * from produtos where descricao = {_descricao}";
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read()) {
+
+                //if (dr.GetString(1) == _descricao)
+                produtos.Add(
+                    new Produto(
+                        dr.GetInt32(0), // ID
+                        dr.GetString(1), // DESCRICAO
+                        dr.GetDouble(2), // UNIDADE
+                        dr.GetString(3), // CODBAR
+                        dr.GetDouble(4), // VALOR
+                        dr.GetDouble(5), // DESCONTO
+                        dr.GetBoolean(6) // DESCONTINUADO
+                     )
+                );
+
+            } // END WHILE
+
             return produtos;
         }
 
@@ -352,8 +378,25 @@ namespace ClassLabNu
 
 
         public bool Alterar()
-        { 
-            return true; 
+        {
+            try {
+                var cmd = Banco.Abrir();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_produto_alterar";
+                cmd.Parameters.AddWithValue("_idProd", Id);
+                cmd.Parameters.AddWithValue("_descricao", Descricao);
+                cmd.Parameters.AddWithValue("_unidade", Unidade);
+                cmd.Parameters.AddWithValue("_codbar", CodBar);
+                cmd.Parameters.AddWithValue("_desconto", Desconto);
+                cmd.Parameters.AddWithValue("_descontinuado", Descontinuado);
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+                return true;
+            }
+            catch {
+                return false;
+
+            }
         }
         
     }// fim da classe produto
