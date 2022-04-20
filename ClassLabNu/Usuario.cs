@@ -100,6 +100,27 @@ namespace ClassLabNu {
             cmd.Connection.Close();
         }
 
+        public bool Alterar(int _id, string _nome, string _email, string _senha, string _idNv) {
+
+            try {
+                var cmd = Banco.Abrir();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_usuario_alterar";
+                cmd.Parameters.AddWithValue("_id", _id);
+                cmd.Parameters.AddWithValue("_nome", _nome);
+                cmd.Parameters.AddWithValue("_email", _email);
+                cmd.Parameters.AddWithValue("_senha", _senha);
+                cmd.Parameters.AddWithValue("_idNv", _idNv);
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+                return true;
+            }
+            catch {
+                return false;
+
+            }
+        }
+
         public static List<socorro> Listar() {
             List<socorro> usuarios = new List<socorro>();
 

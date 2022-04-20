@@ -64,51 +64,49 @@ namespace AuladeHoje {
             if (btnBuscar.Text != "...") goto up;
             if (btnBuscar.Text == "...") goto down;
 
-            up:
+        up:
             Cliente qualquercoisa = Cliente.ConsultarPorId(int.Parse(txtId.Text));
 
             try {
+                if (qualquercoisa.Nome == null) {
+                    MessageBox.Show($"Erro! O usuário de ID {txtId.Text} não existe");
+                    return;
+                }
+
+                btnBuscar.Text = "...";
+                txtId.ReadOnly = true;
+                txtCpf.ReadOnly = true;
+                btnAlterar.Enabled = true;
+
+
+
                 txtNome.Text = qualquercoisa.Nome.ToString();
                 txtCpf.Text = qualquercoisa.Cpf.ToString();
                 txtEmail.Text = qualquercoisa.Email.ToString();
                 dtpDatacad.Text = qualquercoisa.DataCad.ToString();
                 chkAtivo.Checked = qualquercoisa.Ativo;
 
-                btnBuscar.Text = "...";
-                txtId.ReadOnly = true;
-                txtCpf.ReadOnly = false;
-                btnAlterar.Enabled = false;
+                //btnAlterar.Enabled = false;
 
-            }
-
-            catch { }
+            } catch {}
 
             return;
 
+        down:
 
-
-            down:
-            txtId.ReadOnly = false;
-            btnAlterar.Enabled = true;
-            txtCpf.ReadOnly = true;
-            txtId.Focus();
-            btnBuscar.Text = "Buscar";
-            /*
-            if (btnBuscar.Text == "...") {
-                txtId.ReadOnly = false;
-                txtId.Focus();
-                btnBuscar.Text = "Buscar";
-            } else {
-
-                Cliente qualquercoisa = Cliente.ConsultarPorId(int.Parse(txtId.Text));
-
-                try {
-
-                }
-                catch {}
+            if (txtId.Text != "") {
+                MessageBox.Show("Erro, Limpe a tela primeiro!");
+                return;
             }
-            */
 
+            btnBuscar.Text = "Buscar";
+            txtId.Focus();
+
+            txtId.ReadOnly = false;
+            txtCpf.ReadOnly = false;
+            btnAlterar.Enabled = false;
+
+            return;
         }
 
         private void btnAlterar_Click(object sender, EventArgs e) {
@@ -124,5 +122,16 @@ namespace AuladeHoje {
 
         }
 
+        private void btnClear_Click(object sender, EventArgs e) {
+            txtCpf.ReadOnly = false;
+            
+            txtId.Clear();
+            txtNome.Clear();
+            txtCpf.Clear();
+            txtEmail.Clear();
+            btnAlterar.Enabled = false;
+            dtpDatacad.Value = DateTime.Now;
+            //dtpDatacad.;
+        }
     }
 }

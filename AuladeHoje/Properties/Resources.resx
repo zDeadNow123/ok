@@ -121,4 +121,94 @@
   <data name="Jpeg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Jpeg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="1911_64x64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1911_64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="6986_64x64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6986_64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="7829_64x64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\7829_64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="7837_64x64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\7837_64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="10680_64x64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\10680_64x64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="10680_128x128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\10680_128x128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ac0036-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ac0036-48.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AdItem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AdItem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AdItem2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AdItem2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="caixareg.gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\caixareg.gif.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="chair-256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chair-256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="coffee_machine-256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\coffee_machine-256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cup_coffee-256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cup_coffee-256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edicion-pegar-icono-4029-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edicion-pegar-icono-4029-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editar-icono-8419-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\editar-icono-8419-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ei0021-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ei0021-48.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Estoque" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Estoque.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FinPedido" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FinPedido.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FinPedido2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FinPedido2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="monitor-256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\monitor-256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ok.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sair" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sair.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="touch screen kiosk-256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\touch screen kiosk-256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user-256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user-256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wi0009-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wi0009-48.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wi0054-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wi0054-48.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wi0062-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wi0062-48.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wi0063-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wi0063-48.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wi0064-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wi0064-48.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wi0096-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wi0096-48.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
