@@ -14,7 +14,7 @@ namespace ClassLabNu {
 
         public static MySqlCommand Abrir() {
             MySqlCommand cmd = new MySqlCommand();
-            StrConexao = @"server=127.0.0.1;database=comercialdb0191;user id=root;password=Vanpironex15#;port=3306";
+            StrConexao = @"server=127.0.0.1;database=comercialdb0191;user id=root;password=123;port=3306";
             MySqlConnection cn = new MySqlConnection(StrConexao);
 
             try {
