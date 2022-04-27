@@ -95,11 +95,18 @@
     <Compile Include="Cliente2.Designer.cs">
       <DependentUpon>Cliente2.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBCep.cs" />
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pedido2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pedido2.Designer.cs">
+      <DependentUpon>Pedido2.cs</DependentUpon>
     </Compile>
     <Compile Include="Produto2.cs">
       <SubType>Form</SubType>
@@ -121,11 +128,15 @@
     <Compile Include="Usuario2.Designer.cs">
       <DependentUpon>Usuario2.cs</DependentUpon>
     </Compile>
+    <Compile Include="WebCep.cs" />
     <EmbeddedResource Include="Cliente2.resx">
       <DependentUpon>Cliente2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedido2.resx">
+      <DependentUpon>Pedido2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Produto2.resx">
       <DependentUpon>Produto2.cs</DependentUpon>

@@ -18,7 +18,7 @@ namespace ClassLabNu {
             private bool ativo;
 
             public int Id { get { return id; } }
-            public string Nome { get { return nome; } }
+            public string Nome { get { return nome; } set { nome = value; } }
             public string Email { get { return email; } }
             public string Password { get { return senha; } }
             public string Nivel { get { return nivel; } }

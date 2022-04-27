@@ -33,5 +33,11 @@ namespace AuladeHoje {
             Cliente2 cliente = new Cliente2();
             cliente.Show();
         }
+
+        private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Pedido2 pedido = new Pedido2();
+            pedido.Show();
+        }
     }
 }

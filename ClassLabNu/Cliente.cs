@@ -89,7 +89,7 @@ namespace ClassLabNu
 
             cmd.Connection.Close();
         }
-        public bool Alterar(int _id, string _nome = default, string _email = default)
+        public bool Alterar(int _id, string _nome, string _email)
         {
 
             try 
@@ -100,7 +100,7 @@ namespace ClassLabNu
                 cmd.Parameters.AddWithValue("_id", _id);
                 cmd.Parameters.AddWithValue("_nome", _nome);
                 cmd.Parameters.AddWithValue("_email", _email);
-                cmd.ExecuteNonQuery();
+                Id = Convert.ToInt32(cmd.ExecuteScalar());
                 cmd.Connection.Close();
                 return true;
             }

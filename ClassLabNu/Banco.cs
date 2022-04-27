@@ -28,5 +28,23 @@ namespace ClassLabNu {
             return cmd;
         }
 
+        public static MySqlCommand Abrir(string ip, string database, string user, string password, string port)
+        {
+            MySqlCommand cmd = new MySqlCommand();
+            StrConexao = $@"server={ip};database={database};user id={user};password={password};port={port}";
+            MySqlConnection cn = new MySqlConnection(StrConexao);
+
+            try
+            {
+
+                cn.Open();
+            }
+            catch { }
+
+            cmd.Connection = cn;
+
+            return cmd;
+        }
+
     }
 }

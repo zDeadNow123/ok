@@ -135,12 +135,13 @@ namespace ClassLabNu
 
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "sp_produto_inserir";
+            cmd.CommandText = "sp_produtos_inserir";
             cmd.Parameters.AddWithValue("_descricao", Descricao);
             cmd.Parameters.AddWithValue("_unidade", Unidade);
             cmd.Parameters.AddWithValue("_codbar", CodBar);
             cmd.Parameters.AddWithValue("_valor", Valor);
             cmd.Parameters.AddWithValue("_desconto", Desconto);
+            cmd.Parameters.AddWithValue("_descontinuado", Descontinuado);
 
             id = Convert.ToInt32(cmd.ExecuteScalar());
 
