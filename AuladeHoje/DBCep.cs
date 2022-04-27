@@ -46,7 +46,10 @@ namespace AuladeHoje
 
             reader.Close();
 
-            if (uf == null) return;
+            if (uf == null) {
+                cmd.Connection.Close();
+                return;
+            }
 
             cmd.CommandText = $"select * from {uf} where cep = {'"'}{String.Format("{0:0####-###}", int.Parse(cep))}{'"'}";
 

@@ -97,7 +97,7 @@ namespace ClassLabNu
                 var cmd = Banco.Abrir();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "sp_cliente_alterar";
-                cmd.Parameters.AddWithValue("_id", _id);
+                cmd.Parameters.AddWithValue("_idCli", _id);
                 cmd.Parameters.AddWithValue("_nome", _nome);
                 cmd.Parameters.AddWithValue("_email", _email);
                 Id = Convert.ToInt32(cmd.ExecuteScalar());
