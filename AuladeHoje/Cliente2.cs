@@ -34,7 +34,41 @@ namespace AuladeHoje
                 cliente.Inserir();
                 MessageBox.Show($"O Cliente {cliente.Nome}\nfoi gravado com sucesso!");
 
+                txtId_db.Text = cliente.Id.ToString();
+                cmbTipo_principal.Enabled = true;
 
+                // Gravar Endereço se estiver habilitado
+                if (chkAddend.Checked == true)
+                {
+                    Endereco endereco = new Endereco(txtCep.Text, txtLogradouro.Text, txtNumero.Text, txtComplemento.Text, txtBairro.Text, txtCidade.Text, cmbEstado.SelectedItem.ToString(), txtUF.Text, int.Parse(txtId_db.Text));
+
+                    try
+                    {
+                        endereco.Inserir();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException erro)
+                    {
+                        MessageBox.Show($"Erro! {erro.Message}");
+                    }
+                }
+                
+                // Gravar telefone se estiver habilitado
+                if (chkAddTel.Checked == true) {
+                    if (txtId_db.Text != "")
+                        if (cmbTipo_principal.SelectedItem != null)
+
+                            try
+                            {
+                                Telefone telefone = new Telefone(cmbDDD_tel.Text, cmbNumero_tel.Text, cmbTipo_principal.SelectedItem.ToString(), int.Parse(txtId_db.Text));
+                                telefone.Inserir();
+
+                                cmbDDD_tel.Items.Add(cmbDDD_tel.Text);
+                                cmbDDD_tel.SelectedItem = cmbDDD_tel.Text;
+                                cmbNumero_tel.Items.Add(cmbNumero_tel.Text);
+                                cmbNumero_tel.SelectedItem = cmbNumero_tel.Text;
+                            }
+                            catch {}
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException erro)
             {
@@ -79,31 +113,49 @@ namespace AuladeHoje
             if (btnBuscar.Text == "...") goto down;
 
             up:
-            Cliente qualquercoisa = Cliente.ConsultarPorId(int.Parse(txtId.Text));
+            Cliente cliente = Cliente.ConsultarPorId(int.Parse(txtId.Text));
 
             try
             {
-                if (qualquercoisa.Nome == null)
+                if (cliente.Nome == null)
                 {
                     MessageBox.Show($"Erro! O usuário de ID {txtId.Text} não existe");
                     return;
                 }
 
+                txtId_db.Text = txtId.Text;
+                Endereco endereco = Endereco.ConsultarPorId(int.Parse(txtId_db.Text));
+                Telefone telefone = Telefone.ConsultarPorId(int.Parse(txtId_db.Text));
+                //Telefone telefone = Telefone.ConsultarPorId(int.Parse(txtId_db.Text));
+
                 btnBuscar.Text = "...";
                 txtId.ReadOnly = true;
                 txtCpf.ReadOnly = true;
                 btnAlterar.Enabled = true;
+                chkAtivo.Enabled = true;
 
 
+                txtNome.Text = cliente.Nome;
+                txtCpf.Text = cliente.Cpf;
+                txtEmail.Text = cliente.Email;
+                dtpDatacad.Text = cliente.DataCad.ToString();
+                chkAtivo.Checked = cliente.Ativo;
 
-                txtNome.Text = qualquercoisa.Nome.ToString();
-                txtCpf.Text = qualquercoisa.Cpf.ToString();
-                txtEmail.Text = qualquercoisa.Email.ToString();
-                dtpDatacad.Text = qualquercoisa.DataCad.ToString();
-                chkAtivo.Checked = qualquercoisa.Ativo;
+                txtIdEnd_db.Text = endereco.Idend.ToString();
+                txtCep.Text = endereco.Cep;
+                txtLogradouro.Text = endereco.Logradouro;
+                txtNumero.Text = endereco.Numero;
+                txtComplemento.Text = endereco.Complemento;
+                txtBairro.Text = endereco.Bairro;
+                txtCidade.Text = endereco.Cidade;
+                cmbEstado.SelectedItem = endereco.Estado;
+                txtUF.Text = endereco.Uf;
 
-                //btnAlterar.Enabled = false;
-
+                foreach (var items in telefone.Listadeddd) cmbDDD_tel.Items.Add(items);
+                foreach (var items in telefone.Listadenumero) cmbNumero_tel.Items.Add(items);
+                cmbDDD_tel.SelectedIndex = 0;
+                cmbNumero_tel.SelectedIndex = 0;
+                cmbTipo_principal.SelectedItem = Telefone.ConsultarPoridnddd(int.Parse(txtId.Text), int.Parse(cmbNumero_tel.SelectedItem.ToString()), int.Parse(cmbDDD_tel.SelectedItem.ToString())).Tipo;
             }
             catch { }
 
@@ -123,6 +175,7 @@ namespace AuladeHoje
             txtId.ReadOnly = false;
             txtCpf.ReadOnly = false;
             btnAlterar.Enabled = false;
+            chkAtivo.Enabled = false;
 
             return;
         }
@@ -131,10 +184,24 @@ namespace AuladeHoje
         {
 
             Cliente cliente = new Cliente();
+            Endereco endereco = new Endereco();
+            Telefone telefone = new Telefone();
 
             try
             {
-                cliente.Alterar(int.Parse(txtId.Text), txtNome.Text, txtEmail.Text);
+                cliente.Alterar(int.Parse(txtId.Text), txtNome.Text, txtEmail.Text, chkAtivo.Checked);
+                endereco.Alterar(int.Parse(txtIdEnd_db.Text), txtCep.Text, txtLogradouro.Text, txtNumero.Text, txtComplemento.Text, txtBairro.Text, txtCidade.Text, cmbEstado.SelectedItem.ToString(), txtUF.Text, int.Parse(txtId.Text));
+                telefone.Alterar(cmbDDD_tel.Text, cmbNumero_tel.Text, cmbTipo_principal.SelectedItem.ToString(), int.Parse(txtId.Text));
+                cmbDDD_tel.Items.Clear();
+                cmbNumero_tel.Items.Clear();
+
+                telefone = Telefone.ConsultarPorId(int.Parse(txtId.Text));
+
+                foreach (var items in telefone.Listadeddd) cmbDDD_tel.Items.Add(items);
+                foreach (var items in telefone.Listadenumero) cmbNumero_tel.Items.Add(items);
+                cmbDDD_tel.SelectedIndex = 0;
+                cmbNumero_tel.SelectedIndex = 0;
+
                 MessageBox.Show("Cliente alterado com sucesso!");
             }
             catch
@@ -150,11 +217,34 @@ namespace AuladeHoje
             txtId.ReadOnly = true;
             btnBuscar.Text = "...";
             txtId.Clear();
+            txtId_db.Clear();
             txtNome.Clear();
             txtCpf.Clear();
             txtEmail.Clear();
+            chkAtivo.Enabled = false;
+            chkAtivo.Checked = true;
             btnAlterar.Enabled = false;
             dtpDatacad.Value = DateTime.Now;
+
+            chkAddend.Checked = false;
+            txtCep.Clear();
+            txtLogradouro.Clear();
+            txtNumero.Clear();
+            txtComplemento.Clear();
+            txtBairro.Clear();
+            txtCidade.Clear();
+            cmbEstado.SelectedItem = null;
+            txtUF.Clear();
+            chkManualMode.Checked = false;
+
+            chkAddTel.Checked = false;
+            cmbTipo_principal.SelectedItem = null;
+            cmbDDD_tel.SelectedItem = null;
+            cmbNumero_tel.SelectedItem = null;
+            cmbDDD_tel.ResetText();
+            cmbNumero_tel.ResetText();
+            cmbDDD_tel.Items.Clear();
+            cmbNumero_tel.Items.Clear();
         }
 
         private void txtCep_TextChanged(object sender, EventArgs e)
@@ -178,6 +268,8 @@ namespace AuladeHoje
 
         private void chkManualMode_CheckedChanged(object sender, EventArgs e)
         {
+            if (chkAddend.Checked != true) { chkManualMode.Checked = false;}
+
             if (chkManualMode.Checked == true)
             {
                 cmbEstado.DropDownStyle = ComboBoxStyle.DropDown;
@@ -204,6 +296,153 @@ namespace AuladeHoje
         private void cmbEstado_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_addTel_Click(object sender, EventArgs e)
+        {
+            if (cmbDDD_tel.SelectedItem != null || cmbNumero_tel.SelectedItem != null) {
+                
+                cmbDDD_tel.ResetText();
+                cmbNumero_tel.ResetText();
+                return;
+            }
+
+            if (txtId_db.Text != "")
+                if (cmbTipo_principal.SelectedItem != null)
+
+                    try
+                    {
+                        Telefone telefone = new Telefone(cmbDDD_tel.Text, cmbNumero_tel.Text, cmbTipo_principal.SelectedItem.ToString(), int.Parse(txtId_db.Text));
+                        telefone.Inserir();
+
+                        cmbDDD_tel.Items.Add(cmbDDD_tel.Text);
+                        cmbDDD_tel.SelectedItem = cmbDDD_tel.Text;
+                        cmbNumero_tel.Items.Add(cmbNumero_tel.Text);
+                        cmbNumero_tel.SelectedItem = cmbNumero_tel.Text;
+
+                        MessageBox.Show("Telefone Inserido com Sucesso!");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Falha ao Inserir Telefone!");
+                    }
+
+                else MessageBox.Show("Erro! Selecione o Tipo primeiro");
+            else MessageBox.Show("Erro! Insira ou busque o usuário primeiro");
+        }
+
+        private void chkAddTel_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAddTel.Checked == true)
+            {
+                cmbTipo_principal.Enabled = true;
+                cmbDDD_tel.Enabled = true;
+                cmbNumero_tel.Enabled = true;
+                btn_addTel.Enabled = true;
+                btn_removeTel.Enabled = true;
+            }
+            else
+            {
+                cmbTipo_principal.Enabled = false;
+                cmbDDD_tel.Enabled = false;
+                cmbNumero_tel.Enabled = false;
+                btn_addTel.Enabled = false;
+                btn_removeTel.Enabled = false;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            if (txtId_db.Text == "")
+            {
+                MessageBox.Show("Erro! Insira ou busque o usuário primeiro");
+                return;
+            }
+
+            Endereco endereco = new Endereco(txtCep.Text, txtLogradouro.Text, txtNumero.Text, txtComplemento.Text, txtBairro.Text, txtCidade.Text, cmbEstado.SelectedItem.ToString(), txtUF.Text, int.Parse(txtId_db.Text));
+
+            try
+            {
+                endereco.Inserir();
+                MessageBox.Show($"O Endereco foi gravado com sucesso!");
+            }
+            catch (MySql.Data.MySqlClient.MySqlException erro)
+            {
+                MessageBox.Show($"Erro! {erro.Message}");
+            }
+        }
+
+        private void btn_removeTel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Telefone.Remover(txtId.Text, cmbDDD_tel.SelectedItem.ToString(), cmbNumero_tel.SelectedItem.ToString());
+
+                cmbTipo_principal.SelectedItem = null;
+                cmbDDD_tel.Items.Remove(cmbDDD_tel.SelectedItem);
+                cmbDDD_tel.SelectedItem = null;
+                cmbDDD_tel.ResetText();
+                cmbNumero_tel.Items.Remove(cmbNumero_tel.SelectedItem);
+                cmbNumero_tel.SelectedItem = null;
+                cmbNumero_tel.ResetText();
+
+                if (cmbDDD_tel.Items.Count > 0) cmbDDD_tel.SelectedIndex = 0;
+                if (cmbNumero_tel.Items.Count > 0) cmbNumero_tel.SelectedIndex = 0;
+
+                MessageBox.Show("Telefone Removido com Sucesso!");
+            }
+            catch
+            {
+                MessageBox.Show("Falha ao Remover Telefone!");
+            }
+        }
+
+        private void cmbDDD_tel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbNumero_tel.SelectedItem != null)
+            {
+                cmbNumero_tel.SelectedIndex = cmbDDD_tel.SelectedIndex;
+                try
+                {
+                    cmbTipo_principal.SelectedItem = Telefone.ConsultarPoridnddd(int.Parse(txtId.Text), int.Parse(cmbNumero_tel.Text), int.Parse(cmbDDD_tel.Text)).Tipo;
+                }
+                catch { }
+            }
+        }
+
+        private void cmbNumero_tel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbDDD_tel.SelectedItem != null)
+            {
+                cmbDDD_tel.SelectedIndex = cmbNumero_tel.SelectedIndex;
+                try
+                {
+                    cmbTipo_principal.SelectedItem = Telefone.ConsultarPoridnddd(int.Parse(txtId.Text), int.Parse(cmbNumero_tel.Text), int.Parse(cmbDDD_tel.Text)).Tipo;
+                }
+                catch { }
+            }
+
+        }
+
+        private void chkAddend_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAddend.Checked == true)
+            {
+                txtCep.ReadOnly = false;
+                txtNumero.ReadOnly = false;
+                txtComplemento.ReadOnly = false;
+            }
+            else {
+
+                if(chkManualMode.Checked == true) chkManualMode.Checked = false;
+
+                txtCep.ReadOnly = true;
+                txtNumero.ReadOnly = true;
+                txtComplemento.ReadOnly = true;
+            }
+
+            return;
         }
     }
 }

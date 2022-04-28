@@ -89,7 +89,7 @@ namespace ClassLabNu
 
             cmd.Connection.Close();
         }
-        public bool Alterar(int _id, string _nome, string _email)
+        public bool Alterar(int _id, string _nome, string _email, bool _ativo)
         {
 
             try 
@@ -100,6 +100,7 @@ namespace ClassLabNu
                 cmd.Parameters.AddWithValue("_idCli", _id);
                 cmd.Parameters.AddWithValue("_nome", _nome);
                 cmd.Parameters.AddWithValue("_email", _email);
+                cmd.Parameters.AddWithValue("_ativo", _ativo);
                 Id = Convert.ToInt32(cmd.ExecuteScalar());
                 cmd.Connection.Close();
                 return true;
@@ -130,7 +131,7 @@ namespace ClassLabNu
                 cliente.Email = dr.GetString("email");
                 cliente.DataCad = dr.GetDateTime("datacad");
                 cliente.Ativo = dr.GetBoolean("ativo");
-        }
+            }
 
             return cliente;
         }

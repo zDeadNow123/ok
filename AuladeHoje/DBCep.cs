@@ -38,7 +38,6 @@ namespace AuladeHoje
 
                 if (int.Parse(cep) >= int.Parse(reader.GetString(1)) && int.Parse(cep) <= int.Parse(reader.GetString(2)))
                 {
-
                     uf = reader.GetString(0).ToLower();
                     break;
                 }
