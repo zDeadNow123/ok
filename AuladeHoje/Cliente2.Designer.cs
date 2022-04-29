@@ -48,6 +48,7 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkAddend = new System.Windows.Forms.CheckBox();
             this.chkManualMode = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
@@ -68,19 +69,18 @@
             this.txtCep = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_removeTel = new System.Windows.Forms.Button();
+            this.cmbNumero_tel = new System.Windows.Forms.ComboBox();
+            this.cmbDDD_tel = new System.Windows.Forms.ComboBox();
             this.chkAddTel = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.btn_addTel = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.cmbTipo_principal = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtId_db = new System.Windows.Forms.TextBox();
             this.txtIdEnd_db = new System.Windows.Forms.TextBox();
-            this.cmbDDD_tel = new System.Windows.Forms.ComboBox();
-            this.cmbNumero_tel = new System.Windows.Forms.ComboBox();
-            this.btn_removeTel = new System.Windows.Forms.Button();
-            this.btn_addTel = new System.Windows.Forms.Button();
-            this.chkAddend = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -113,6 +113,7 @@
             this.txtCpf.Name = "txtCpf";
             this.txtCpf.Size = new System.Drawing.Size(100, 20);
             this.txtCpf.TabIndex = 2;
+            this.txtCpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCpf_KeyPress);
             // 
             // txtEmail
             // 
@@ -343,6 +344,17 @@
             this.panel1.Size = new System.Drawing.Size(452, 242);
             this.panel1.TabIndex = 23;
             // 
+            // chkAddend
+            // 
+            this.chkAddend.AutoSize = true;
+            this.chkAddend.Location = new System.Drawing.Point(194, 14);
+            this.chkAddend.Name = "chkAddend";
+            this.chkAddend.Size = new System.Drawing.Size(160, 17);
+            this.chkAddend.TabIndex = 21;
+            this.chkAddend.Text = "Adicionar / Alterar Endereço";
+            this.chkAddend.UseVisualStyleBackColor = true;
+            this.chkAddend.CheckedChanged += new System.EventHandler(this.chkAddend_CheckedChanged);
+            // 
             // chkManualMode
             // 
             this.chkManualMode.AutoSize = true;
@@ -531,11 +543,13 @@
             // txtCep
             // 
             this.txtCep.Location = new System.Drawing.Point(28, 82);
+            this.txtCep.MaxLength = 9;
             this.txtCep.Name = "txtCep";
             this.txtCep.ReadOnly = true;
             this.txtCep.Size = new System.Drawing.Size(100, 20);
             this.txtCep.TabIndex = 1;
             this.txtCep.TextChanged += new System.EventHandler(this.txtCep_TextChanged);
+            this.txtCep.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCep_KeyPress);
             // 
             // label8
             // 
@@ -562,6 +576,43 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(343, 242);
             this.panel2.TabIndex = 24;
+            // 
+            // btn_removeTel
+            // 
+            this.btn_removeTel.Enabled = false;
+            this.btn_removeTel.FlatAppearance.BorderSize = 0;
+            this.btn_removeTel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_removeTel.Image = global::AuladeHoje.Properties.Resources.output_onlinepngtools;
+            this.btn_removeTel.Location = new System.Drawing.Point(258, 132);
+            this.btn_removeTel.Name = "btn_removeTel";
+            this.btn_removeTel.Size = new System.Drawing.Size(35, 35);
+            this.btn_removeTel.TabIndex = 27;
+            this.btn_removeTel.UseVisualStyleBackColor = true;
+            this.btn_removeTel.Click += new System.EventHandler(this.btn_removeTel_Click);
+            // 
+            // cmbNumero_tel
+            // 
+            this.cmbNumero_tel.Enabled = false;
+            this.cmbNumero_tel.FormattingEnabled = true;
+            this.cmbNumero_tel.Location = new System.Drawing.Point(80, 144);
+            this.cmbNumero_tel.MaxLength = 9;
+            this.cmbNumero_tel.Name = "cmbNumero_tel";
+            this.cmbNumero_tel.Size = new System.Drawing.Size(121, 21);
+            this.cmbNumero_tel.TabIndex = 26;
+            this.cmbNumero_tel.SelectedIndexChanged += new System.EventHandler(this.cmbNumero_tel_SelectedIndexChanged);
+            this.cmbNumero_tel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbNumero_tel_KeyPress);
+            // 
+            // cmbDDD_tel
+            // 
+            this.cmbDDD_tel.Enabled = false;
+            this.cmbDDD_tel.FormattingEnabled = true;
+            this.cmbDDD_tel.Location = new System.Drawing.Point(37, 144);
+            this.cmbDDD_tel.MaxLength = 2;
+            this.cmbDDD_tel.Name = "cmbDDD_tel";
+            this.cmbDDD_tel.Size = new System.Drawing.Size(38, 21);
+            this.cmbDDD_tel.TabIndex = 25;
+            this.cmbDDD_tel.SelectedIndexChanged += new System.EventHandler(this.cmbDDD_tel_SelectedIndexChanged);
+            this.cmbDDD_tel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDDD_tel_KeyPress);
             // 
             // chkAddTel
             // 
@@ -591,6 +642,19 @@
             this.label19.Size = new System.Drawing.Size(31, 13);
             this.label19.TabIndex = 22;
             this.label19.Text = "DDD";
+            // 
+            // btn_addTel
+            // 
+            this.btn_addTel.Enabled = false;
+            this.btn_addTel.FlatAppearance.BorderSize = 0;
+            this.btn_addTel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_addTel.Image = global::AuladeHoje.Properties.Resources.AdItem2;
+            this.btn_addTel.Location = new System.Drawing.Point(217, 133);
+            this.btn_addTel.Name = "btn_addTel";
+            this.btn_addTel.Size = new System.Drawing.Size(35, 35);
+            this.btn_addTel.TabIndex = 21;
+            this.btn_addTel.UseVisualStyleBackColor = true;
+            this.btn_addTel.Click += new System.EventHandler(this.btn_addTel_Click);
             // 
             // label20
             // 
@@ -640,65 +704,6 @@
             this.txtIdEnd_db.Size = new System.Drawing.Size(30, 20);
             this.txtIdEnd_db.TabIndex = 26;
             this.txtIdEnd_db.Visible = false;
-            // 
-            // cmbDDD_tel
-            // 
-            this.cmbDDD_tel.Enabled = false;
-            this.cmbDDD_tel.FormattingEnabled = true;
-            this.cmbDDD_tel.Location = new System.Drawing.Point(37, 144);
-            this.cmbDDD_tel.MaxLength = 2;
-            this.cmbDDD_tel.Name = "cmbDDD_tel";
-            this.cmbDDD_tel.Size = new System.Drawing.Size(38, 21);
-            this.cmbDDD_tel.TabIndex = 25;
-            this.cmbDDD_tel.SelectedIndexChanged += new System.EventHandler(this.cmbDDD_tel_SelectedIndexChanged);
-            // 
-            // cmbNumero_tel
-            // 
-            this.cmbNumero_tel.Enabled = false;
-            this.cmbNumero_tel.FormattingEnabled = true;
-            this.cmbNumero_tel.Location = new System.Drawing.Point(80, 144);
-            this.cmbNumero_tel.MaxLength = 9;
-            this.cmbNumero_tel.Name = "cmbNumero_tel";
-            this.cmbNumero_tel.Size = new System.Drawing.Size(121, 21);
-            this.cmbNumero_tel.TabIndex = 26;
-            this.cmbNumero_tel.SelectedIndexChanged += new System.EventHandler(this.cmbNumero_tel_SelectedIndexChanged);
-            // 
-            // btn_removeTel
-            // 
-            this.btn_removeTel.Enabled = false;
-            this.btn_removeTel.FlatAppearance.BorderSize = 0;
-            this.btn_removeTel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_removeTel.Image = global::AuladeHoje.Properties.Resources.output_onlinepngtools;
-            this.btn_removeTel.Location = new System.Drawing.Point(258, 132);
-            this.btn_removeTel.Name = "btn_removeTel";
-            this.btn_removeTel.Size = new System.Drawing.Size(35, 35);
-            this.btn_removeTel.TabIndex = 27;
-            this.btn_removeTel.UseVisualStyleBackColor = true;
-            this.btn_removeTel.Click += new System.EventHandler(this.btn_removeTel_Click);
-            // 
-            // btn_addTel
-            // 
-            this.btn_addTel.Enabled = false;
-            this.btn_addTel.FlatAppearance.BorderSize = 0;
-            this.btn_addTel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_addTel.Image = global::AuladeHoje.Properties.Resources.AdItem2;
-            this.btn_addTel.Location = new System.Drawing.Point(217, 133);
-            this.btn_addTel.Name = "btn_addTel";
-            this.btn_addTel.Size = new System.Drawing.Size(35, 35);
-            this.btn_addTel.TabIndex = 21;
-            this.btn_addTel.UseVisualStyleBackColor = true;
-            this.btn_addTel.Click += new System.EventHandler(this.btn_addTel_Click);
-            // 
-            // chkAddend
-            // 
-            this.chkAddend.AutoSize = true;
-            this.chkAddend.Location = new System.Drawing.Point(194, 14);
-            this.chkAddend.Name = "chkAddend";
-            this.chkAddend.Size = new System.Drawing.Size(160, 17);
-            this.chkAddend.TabIndex = 21;
-            this.chkAddend.Text = "Adicionar / Alterar Endereço";
-            this.chkAddend.UseVisualStyleBackColor = true;
-            this.chkAddend.CheckedChanged += new System.EventHandler(this.chkAddend_CheckedChanged);
             // 
             // Cliente2
             // 

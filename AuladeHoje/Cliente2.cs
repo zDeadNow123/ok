@@ -27,7 +27,10 @@ namespace AuladeHoje
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
+            if (txtNome.Text == "" || txtCpf.Text == "" || txtEmail.Text == "") { MessageBox.Show("Erro! Insira os dados do cliente primeiro"); return; }
+
             Cliente cliente = new Cliente(txtNome.Text, txtCpf.Text, txtEmail.Text);
+
 
             try
             {
@@ -51,9 +54,10 @@ namespace AuladeHoje
                         MessageBox.Show($"Erro! {erro.Message}");
                     }
                 }
-                
+
                 // Gravar telefone se estiver habilitado
-                if (chkAddTel.Checked == true) {
+                if (chkAddTel.Checked == true)
+                {
                     if (txtId_db.Text != "")
                         if (cmbTipo_principal.SelectedItem != null)
 
@@ -67,7 +71,7 @@ namespace AuladeHoje
                                 cmbNumero_tel.Items.Add(cmbNumero_tel.Text);
                                 cmbNumero_tel.SelectedItem = cmbNumero_tel.Text;
                             }
-                            catch {}
+                            catch { }
                 }
             }
             catch (MySql.Data.MySqlClient.MySqlException erro)
@@ -176,6 +180,7 @@ namespace AuladeHoje
             txtCpf.ReadOnly = false;
             btnAlterar.Enabled = false;
             chkAtivo.Enabled = false;
+            btnInserir.Enabled = false;
 
             return;
         }
@@ -224,6 +229,7 @@ namespace AuladeHoje
             chkAtivo.Enabled = false;
             chkAtivo.Checked = true;
             btnAlterar.Enabled = false;
+            btnInserir.Enabled = true;
             dtpDatacad.Value = DateTime.Now;
 
             chkAddend.Checked = false;
@@ -268,7 +274,7 @@ namespace AuladeHoje
 
         private void chkManualMode_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkAddend.Checked != true) { chkManualMode.Checked = false;}
+            if (chkAddend.Checked != true) { chkManualMode.Checked = false; }
 
             if (chkManualMode.Checked == true)
             {
@@ -300,39 +306,40 @@ namespace AuladeHoje
 
         private void btn_addTel_Click(object sender, EventArgs e)
         {
-            if (cmbDDD_tel.SelectedItem != null || cmbNumero_tel.SelectedItem != null) {
-                
+            if (cmbDDD_tel.SelectedItem != null || cmbNumero_tel.SelectedItem != null)
+            {
+
                 cmbDDD_tel.ResetText();
                 cmbNumero_tel.ResetText();
                 return;
             }
 
-            if (txtId_db.Text != "")
-                if (cmbTipo_principal.SelectedItem != null)
+            if (cmbTipo_principal.SelectedItem != null)
 
-                    try
-                    {
-                        Telefone telefone = new Telefone(cmbDDD_tel.Text, cmbNumero_tel.Text, cmbTipo_principal.SelectedItem.ToString(), int.Parse(txtId_db.Text));
-                        telefone.Inserir();
+                try
+                {
+                    Telefone telefone = new Telefone(cmbDDD_tel.Text, cmbNumero_tel.Text, cmbTipo_principal.SelectedItem.ToString(), int.Parse(txtId_db.Text));
+                    telefone.Inserir();
 
-                        cmbDDD_tel.Items.Add(cmbDDD_tel.Text);
-                        cmbDDD_tel.SelectedItem = cmbDDD_tel.Text;
-                        cmbNumero_tel.Items.Add(cmbNumero_tel.Text);
-                        cmbNumero_tel.SelectedItem = cmbNumero_tel.Text;
+                    cmbDDD_tel.Items.Add(cmbDDD_tel.Text);
+                    cmbDDD_tel.SelectedItem = cmbDDD_tel.Text;
+                    cmbNumero_tel.Items.Add(cmbNumero_tel.Text);
+                    cmbNumero_tel.SelectedItem = cmbNumero_tel.Text;
 
-                        MessageBox.Show("Telefone Inserido com Sucesso!");
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Falha ao Inserir Telefone!");
-                    }
+                    MessageBox.Show("Telefone Inserido com Sucesso!");
+                }
+                catch
+                {
+                    MessageBox.Show("Falha ao Inserir Telefone!");
+                }
 
-                else MessageBox.Show("Erro! Selecione o Tipo primeiro");
-            else MessageBox.Show("Erro! Insira ou busque o usuário primeiro");
+            else MessageBox.Show("Erro! Selecione o Tipo primeiro");
         }
 
         private void chkAddTel_CheckedChanged(object sender, EventArgs e)
         {
+            if (txtId.Text == "") chkAddTel.Checked = false;
+
             if (chkAddTel.Checked == true)
             {
                 cmbTipo_principal.Enabled = true;
@@ -375,16 +382,34 @@ namespace AuladeHoje
 
         private void btn_removeTel_Click(object sender, EventArgs e)
         {
+
+            if (cmbDDD_tel.Text == "" || cmbNumero_tel.Text == "") {
+                MessageBox.Show("Falha ao Remover Telefone! Não existe ou não foi selecionado");
+                return;
+            }
+
             try
             {
-                Telefone.Remover(txtId.Text, cmbDDD_tel.SelectedItem.ToString(), cmbNumero_tel.SelectedItem.ToString());
+                Telefone telefone = Telefone.ConsultarPorId(int.Parse(txtId.Text));
+
+                if (telefone.Listadeddd.Contains(cmbDDD_tel.Text) && telefone.Listadenumero.Contains(cmbNumero_tel.Text))
+                {
+                    Telefone.Remover(txtId.Text, cmbDDD_tel.Text, cmbNumero_tel.Text);
+                }
+                else {
+                    MessageBox.Show("Falha ao Remover Telefone! Inválido");
+                    return;
+                }
 
                 cmbTipo_principal.SelectedItem = null;
-                cmbDDD_tel.Items.Remove(cmbDDD_tel.SelectedItem);
+
+                cmbDDD_tel.Items.Remove(cmbDDD_tel.Text);
+                cmbNumero_tel.Items.Remove(cmbNumero_tel.Text);
+
                 cmbDDD_tel.SelectedItem = null;
-                cmbDDD_tel.ResetText();
-                cmbNumero_tel.Items.Remove(cmbNumero_tel.SelectedItem);
                 cmbNumero_tel.SelectedItem = null;
+
+                cmbDDD_tel.ResetText();
                 cmbNumero_tel.ResetText();
 
                 if (cmbDDD_tel.Items.Count > 0) cmbDDD_tel.SelectedIndex = 0;
@@ -402,7 +427,9 @@ namespace AuladeHoje
         {
             if (cmbNumero_tel.SelectedItem != null)
             {
-                cmbNumero_tel.SelectedIndex = cmbDDD_tel.SelectedIndex;
+                if (cmbDDD_tel.Text != "") cmbNumero_tel.SelectedIndex = cmbDDD_tel.SelectedIndex;
+                else return;
+
                 try
                 {
                     cmbTipo_principal.SelectedItem = Telefone.ConsultarPoridnddd(int.Parse(txtId.Text), int.Parse(cmbNumero_tel.Text), int.Parse(cmbDDD_tel.Text)).Tipo;
@@ -415,7 +442,10 @@ namespace AuladeHoje
         {
             if (cmbDDD_tel.SelectedItem != null)
             {
-                cmbDDD_tel.SelectedIndex = cmbNumero_tel.SelectedIndex;
+
+                if (cmbNumero_tel.Text != "") cmbDDD_tel.SelectedIndex = cmbNumero_tel.SelectedIndex;
+                else return;
+
                 try
                 {
                     cmbTipo_principal.SelectedItem = Telefone.ConsultarPoridnddd(int.Parse(txtId.Text), int.Parse(cmbNumero_tel.Text), int.Parse(cmbDDD_tel.Text)).Tipo;
@@ -427,15 +457,18 @@ namespace AuladeHoje
 
         private void chkAddend_CheckedChanged(object sender, EventArgs e)
         {
+            if (txtId.Text == "") chkAddend.Checked = false;
+
             if (chkAddend.Checked == true)
             {
                 txtCep.ReadOnly = false;
                 txtNumero.ReadOnly = false;
                 txtComplemento.ReadOnly = false;
             }
-            else {
+            else
+            {
 
-                if(chkManualMode.Checked == true) chkManualMode.Checked = false;
+                if (chkManualMode.Checked == true) chkManualMode.Checked = false;
 
                 txtCep.ReadOnly = true;
                 txtNumero.ReadOnly = true;
@@ -443,6 +476,26 @@ namespace AuladeHoje
             }
 
             return;
+        }
+
+        private void txtCpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) { e.Handled = true; }
+        }
+
+        private void txtCep_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) { e.Handled = true; }
+        }
+
+        private void cmbDDD_tel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) { e.Handled = true; }
+        }
+
+        private void cmbNumero_tel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) { e.Handled = true; }
         }
     }
 }
