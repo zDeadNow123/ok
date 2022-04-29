@@ -392,14 +392,13 @@ namespace AuladeHoje
             {
                 Telefone telefone = Telefone.ConsultarPorId(int.Parse(txtId.Text));
 
-                if (telefone.Listadeddd.Contains(cmbDDD_tel.Text) && telefone.Listadenumero.Contains(cmbNumero_tel.Text))
+                if (!telefone.Listadeddd.Contains(cmbDDD_tel.Text) && !telefone.Listadenumero.Contains(cmbNumero_tel.Text))
                 {
-                    Telefone.Remover(txtId.Text, cmbDDD_tel.Text, cmbNumero_tel.Text);
-                }
-                else {
                     MessageBox.Show("Falha ao Remover Telefone! Inválido");
                     return;
                 }
+                
+                Telefone.Remover(txtId.Text, cmbDDD_tel.Text, cmbNumero_tel.Text);
 
                 cmbTipo_principal.SelectedItem = null;
 
