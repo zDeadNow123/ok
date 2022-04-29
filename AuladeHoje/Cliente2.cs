@@ -130,7 +130,6 @@ namespace AuladeHoje
                 txtId_db.Text = txtId.Text;
                 Endereco endereco = Endereco.ConsultarPorId(int.Parse(txtId_db.Text));
                 Telefone telefone = Telefone.ConsultarPorId(int.Parse(txtId_db.Text));
-                //Telefone telefone = Telefone.ConsultarPorId(int.Parse(txtId_db.Text));
 
                 btnBuscar.Text = "...";
                 txtId.ReadOnly = true;
@@ -157,8 +156,10 @@ namespace AuladeHoje
 
                 foreach (var items in telefone.Listadeddd) cmbDDD_tel.Items.Add(items);
                 foreach (var items in telefone.Listadenumero) cmbNumero_tel.Items.Add(items);
+
                 cmbDDD_tel.SelectedIndex = 0;
                 cmbNumero_tel.SelectedIndex = 0;
+
                 cmbTipo_principal.SelectedItem = Telefone.ConsultarPoridnddd(int.Parse(txtId.Text), int.Parse(cmbNumero_tel.SelectedItem.ToString()), int.Parse(cmbDDD_tel.SelectedItem.ToString())).Tipo;
             }
             catch { }
@@ -197,6 +198,7 @@ namespace AuladeHoje
                 cliente.Alterar(int.Parse(txtId.Text), txtNome.Text, txtEmail.Text, chkAtivo.Checked);
                 endereco.Alterar(int.Parse(txtIdEnd_db.Text), txtCep.Text, txtLogradouro.Text, txtNumero.Text, txtComplemento.Text, txtBairro.Text, txtCidade.Text, cmbEstado.SelectedItem.ToString(), txtUF.Text, int.Parse(txtId.Text));
                 telefone.Alterar(cmbDDD_tel.Text, cmbNumero_tel.Text, cmbTipo_principal.SelectedItem.ToString(), int.Parse(txtId.Text));
+
                 cmbDDD_tel.Items.Clear();
                 cmbNumero_tel.Items.Clear();
 
@@ -204,6 +206,7 @@ namespace AuladeHoje
 
                 foreach (var items in telefone.Listadeddd) cmbDDD_tel.Items.Add(items);
                 foreach (var items in telefone.Listadenumero) cmbNumero_tel.Items.Add(items);
+
                 cmbDDD_tel.SelectedIndex = 0;
                 cmbNumero_tel.SelectedIndex = 0;
 
@@ -251,6 +254,8 @@ namespace AuladeHoje
             cmbNumero_tel.ResetText();
             cmbDDD_tel.Items.Clear();
             cmbNumero_tel.Items.Clear();
+
+            dgvClientes.Rows.Clear();
         }
 
         private void txtCep_TextChanged(object sender, EventArgs e)
