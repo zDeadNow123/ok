@@ -179,11 +179,11 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(337, 376);
+            this.lblStatus.Location = new System.Drawing.Point(309, 343);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(35, 13);
+            this.lblStatus.Size = new System.Drawing.Size(56, 13);
             this.lblStatus.TabIndex = 19;
-            this.lblStatus.Text = "label5";
+            this.lblStatus.Text = "DEFAULT";
             // 
             // Pedido2
             // 

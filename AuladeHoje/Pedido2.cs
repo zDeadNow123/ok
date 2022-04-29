@@ -25,6 +25,11 @@ namespace AuladeHoje
 
             Pedido pedido = new Pedido(lblStatus.Text, Double.Parse(txtDesconto.Text), cliente, usuario);
             pedido.Inserir();
+
+            
+            if(pedido.Status == )
+            lblStatus.ForeColor = Color.Red;
+            lblStatus.ForeColor = Color.White;
         }
 
     }

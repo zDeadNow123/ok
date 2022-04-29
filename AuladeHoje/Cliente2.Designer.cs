@@ -81,9 +81,15 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtId_db = new System.Windows.Forms.TextBox();
             this.txtIdEnd_db = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtId
@@ -706,11 +712,47 @@
             this.txtIdEnd_db.TabIndex = 26;
             this.txtIdEnd_db.Visible = false;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label18);
+            this.panel3.Controls.Add(this.btnBrowse);
+            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Location = new System.Drawing.Point(863, 315);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(298, 242);
+            this.panel3.TabIndex = 27;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(65, 82);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(176, 20);
+            this.textBox1.TabIndex = 0;
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Location = new System.Drawing.Point(247, 81);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(41, 23);
+            this.btnBrowse.TabIndex = 1;
+            this.btnBrowse.Text = "...";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(11, 86);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(51, 13);
+            this.label18.TabIndex = 2;
+            this.label18.Text = "Caminho:";
+            // 
             // Cliente2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 572);
+            this.ClientSize = new System.Drawing.Size(1236, 572);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.txtIdEnd_db);
             this.Controls.Add(this.txtId_db);
             this.Controls.Add(this.panel2);
@@ -743,6 +785,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -808,6 +852,11 @@
         private System.Windows.Forms.ComboBox cmbDDD_tel;
         private System.Windows.Forms.Button btn_removeTel;
         private System.Windows.Forms.CheckBox chkAddend;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
