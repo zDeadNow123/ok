@@ -50,7 +50,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkAddend = new System.Windows.Forms.CheckBox();
             this.chkManualMode = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnGravar_end = new System.Windows.Forms.Button();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -321,7 +321,7 @@
             // 
             this.panel1.Controls.Add(this.chkAddend);
             this.panel1.Controls.Add(this.chkManualMode);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnGravar_end);
             this.panel1.Controls.Add(this.cmbEstado);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.label15);
@@ -366,15 +366,16 @@
             this.chkManualMode.UseVisualStyleBackColor = true;
             this.chkManualMode.CheckedChanged += new System.EventHandler(this.chkManualMode_CheckedChanged);
             // 
-            // button2
+            // btnGravar_end
             // 
-            this.button2.Location = new System.Drawing.Point(238, 196);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(61, 21);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Gravar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnGravar_end.Enabled = false;
+            this.btnGravar_end.Location = new System.Drawing.Point(238, 196);
+            this.btnGravar_end.Name = "btnGravar_end";
+            this.btnGravar_end.Size = new System.Drawing.Size(61, 21);
+            this.btnGravar_end.TabIndex = 17;
+            this.btnGravar_end.Text = "Gravar";
+            this.btnGravar_end.UseVisualStyleBackColor = true;
+            this.btnGravar_end.Click += new System.EventHandler(this.button2_Click);
             // 
             // cmbEstado
             // 
@@ -791,7 +792,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnGravar_end;
         private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.CheckBox chkManualMode;
         private System.Windows.Forms.Panel panel2;

@@ -343,15 +343,18 @@ namespace AuladeHoje
 
         private void chkAddTel_CheckedChanged(object sender, EventArgs e)
         {
-            if (txtId.Text == "") chkAddTel.Checked = false;
 
             if (chkAddTel.Checked == true)
             {
                 cmbTipo_principal.Enabled = true;
                 cmbDDD_tel.Enabled = true;
                 cmbNumero_tel.Enabled = true;
-                btn_addTel.Enabled = true;
-                btn_removeTel.Enabled = true;
+
+                if (txtId.Text != "")
+                {
+                    btn_addTel.Enabled = true;
+                    btn_removeTel.Enabled = true;
+                }
             }
             else
             {
@@ -388,7 +391,8 @@ namespace AuladeHoje
         private void btn_removeTel_Click(object sender, EventArgs e)
         {
 
-            if (cmbDDD_tel.Text == "" || cmbNumero_tel.Text == "") {
+            if (cmbDDD_tel.Text == "" || cmbNumero_tel.Text == "")
+            {
                 MessageBox.Show("Falha ao Remover Telefone! Não existe ou não foi selecionado");
                 return;
             }
@@ -402,7 +406,7 @@ namespace AuladeHoje
                     MessageBox.Show("Falha ao Remover Telefone! Inválido");
                     return;
                 }
-                
+
                 Telefone.Remover(txtId.Text, cmbDDD_tel.Text, cmbNumero_tel.Text);
 
                 cmbTipo_principal.SelectedItem = null;
@@ -461,13 +465,13 @@ namespace AuladeHoje
 
         private void chkAddend_CheckedChanged(object sender, EventArgs e)
         {
-            if (txtId.Text == "") chkAddend.Checked = false;
 
             if (chkAddend.Checked == true)
             {
                 txtCep.ReadOnly = false;
                 txtNumero.ReadOnly = false;
                 txtComplemento.ReadOnly = false;
+                btnGravar_end.Enabled = true;
             }
             else
             {
@@ -477,6 +481,7 @@ namespace AuladeHoje
                 txtCep.ReadOnly = true;
                 txtNumero.ReadOnly = true;
                 txtComplemento.ReadOnly = true;
+                btnGravar_end.Enabled = false;
             }
 
             return;
