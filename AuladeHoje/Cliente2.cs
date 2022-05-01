@@ -138,6 +138,7 @@ namespace AuladeHoje
                 txtCpf.ReadOnly = true;
                 btnAlterar.Enabled = true;
                 chkAtivo.Enabled = true;
+                btnBrowse.Enabled = true;
 
 
                 txtNome.Text = cliente.Nome;
@@ -184,7 +185,7 @@ namespace AuladeHoje
             btnAlterar.Enabled = false;
             chkAtivo.Enabled = false;
             btnInserir.Enabled = false;
-
+            btnBrowse.Enabled = false;
             return;
         }
 
@@ -235,6 +236,7 @@ namespace AuladeHoje
             chkAtivo.Checked = true;
             btnAlterar.Enabled = false;
             btnInserir.Enabled = true;
+            btnBrowse.Enabled = false;
             dtpDatacad.Value = DateTime.Now;
 
             chkAddend.Checked = false;
@@ -513,11 +515,6 @@ namespace AuladeHoje
         {
             var savedlg = dialogoSalvarArquivo;
             savedlg.Filter = "Excel (*.xlsx)|*.xlsx";
-
-            if (txtId.Text == "") {
-                MessageBox.Show("Erro! Consulte um cliente primeiro");
-                return;
-            }
 
             if (savedlg.ShowDialog() == DialogResult.OK) {
 
