@@ -82,10 +82,11 @@
             this.txtId_db = new System.Windows.Forms.TextBox();
             this.txtIdEnd_db = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnBrowse = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dialogoSalvarArquivo = new System.Windows.Forms.SaveFileDialog();
+            this.label22 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -714,6 +715,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label22);
             this.panel3.Controls.Add(this.label18);
             this.panel3.Controls.Add(this.btnBrowse);
             this.panel3.Controls.Add(this.textBox1);
@@ -721,22 +723,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(298, 242);
             this.panel3.TabIndex = 27;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(65, 82);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(176, 20);
-            this.textBox1.TabIndex = 0;
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.Location = new System.Drawing.Point(247, 81);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(41, 23);
-            this.btnBrowse.TabIndex = 1;
-            this.btnBrowse.Text = "...";
-            this.btnBrowse.UseVisualStyleBackColor = true;
             // 
             // label18
             // 
@@ -746,6 +732,32 @@
             this.label18.Size = new System.Drawing.Size(51, 13);
             this.label18.TabIndex = 2;
             this.label18.Text = "Caminho:";
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Location = new System.Drawing.Point(247, 81);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(41, 23);
+            this.btnBrowse.TabIndex = 1;
+            this.btnBrowse.Text = "...";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(65, 82);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(176, 20);
+            this.textBox1.TabIndex = 0;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(11, 15);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(69, 13);
+            this.label22.TabIndex = 3;
+            this.label22.Text = "Salvar dados";
             // 
             // Cliente2
             // 
@@ -856,7 +868,8 @@
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog dialogoSalvarArquivo;
+        private System.Windows.Forms.Label label22;
     }
 }
 

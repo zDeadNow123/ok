@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient; // não precisa, só usar como Var
 using ClassLabNu;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace AuladeHoje
 {
@@ -505,6 +507,70 @@ namespace AuladeHoje
         private void cmbNumero_tel_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) { e.Handled = true; }
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            var savedlg = dialogoSalvarArquivo;
+            //savedlg.Filter = "Execel (*.xlsx)";
+
+            if (txtId.Text == "") {
+                MessageBox.Show("Erro! Consulte um usuário primeiro");
+                return;
+            }
+
+            if (savedlg.ShowDialog() == DialogResult.OK) {
+
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheetClientes = workbook.Worksheets.Add("Clientes");
+
+
+                worksheetClientes.Cell("A1").Value = "ID";
+                worksheetClientes.Cell("A2").Value = txtId.Text;
+
+                worksheetClientes.Cell("B1").Value = "NOME";
+                worksheetClientes.Cell("B2").Value = txtNome.Text;
+
+                worksheetClientes.Cell("C1").Value = "CPF";
+                worksheetClientes.Cell("C2").Value = txtCpf.Text;
+
+                worksheetClientes.Cell("D1").Value = "EMAIL";
+                worksheetClientes.Cell("D2").Value = txtEmail.Text;
+
+                // -----------------------------------------------------------------------
+
+                worksheetClientes.Cell("F1").Value = "CEP";
+                worksheetClientes.Cell("F2").Value = "'" + txtCep.Text;
+
+                worksheetClientes.Cell("G1").Value = "LOGRADOURO";
+                worksheetClientes.Cell("G2").Value = txtLogradouro.Text;
+
+                worksheetClientes.Cell("H1").Value = "NUMERO";
+                worksheetClientes.Cell("H2").Value = txtNumero.Text;
+
+                worksheetClientes.Cell("I1").Value = "COMPLEMENTO";
+                worksheetClientes.Cell("I2").Value = txtComplemento.Text;
+
+                worksheetClientes.Cell("J1").Value = "BAIRRO";
+                worksheetClientes.Cell("J2").Value = txtBairro.Text;
+
+                worksheetClientes.Cell("K1").Value = "CIDADE";
+                worksheetClientes.Cell("K2").Value = txtCidade.Text;
+
+                worksheetClientes.Cell("L1").Value = "ESTADO";
+                worksheetClientes.Cell("L2").Value = cmbEstado.Text;
+
+                worksheetClientes.Cell("M1").Value = "UF";
+                worksheetClientes.Cell("M2").Value = txtUF.Text;
+
+                worksheetClientes.Columns().AdjustToContents();
+
+
+                Stream excelStream = File.Create(Path.GetFullPath($@"{Path.GetFullPath(savedlg.FileName)}.xlsx"));
+                workbook.SaveAs(excelStream);
+                excelStream.Dispose();
+            }
+
         }
     }
 }

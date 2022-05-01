@@ -27,7 +27,7 @@ namespace AuladeHoje
             pedido.Inserir();
 
             
-            if(pedido.Status == )
+            //if(pedido.Status == )
             lblStatus.ForeColor = Color.Red;
             lblStatus.ForeColor = Color.White;
         }
