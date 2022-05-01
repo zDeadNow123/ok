@@ -563,6 +563,14 @@ namespace AuladeHoje
                 worksheetClientes.Cell("M1").Value = "UF";
                 worksheetClientes.Cell("M2").Value = txtUF.Text;
 
+                // -----------------------------------------------------------------------
+
+                worksheetClientes.Cell("O1").Value = "TELEFONES";
+                var b = 1;
+                for (int i = 0; i < cmbDDD_tel.Items.Count; i++) {
+                    worksheetClientes.Cell("O" + (b += 1)).Value = $"({cmbDDD_tel.Items[i].ToString()}) {cmbNumero_tel.Items[i].ToString()}";
+                }
+
                 worksheetClientes.Columns().AdjustToContents();
 
 
