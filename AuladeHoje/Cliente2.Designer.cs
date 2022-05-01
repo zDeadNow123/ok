@@ -40,11 +40,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.dtpDatacad = new System.Windows.Forms.DateTimePicker();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
-            this.clnIdCli = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clnNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clnCpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clnEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clnAtivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -81,16 +76,17 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtId_db = new System.Windows.Forms.TextBox();
             this.txtIdEnd_db = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label18 = new System.Windows.Forms.Label();
             this.btnBrowse = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dialogoSalvarArquivo = new System.Windows.Forms.SaveFileDialog();
             this.label22 = new System.Windows.Forms.Label();
+            this.clnIdCli = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnCpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clnAtivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtId
@@ -263,46 +259,8 @@
             this.dgvClientes.Name = "dgvClientes";
             this.dgvClientes.ReadOnly = true;
             this.dgvClientes.RowHeadersVisible = false;
-            this.dgvClientes.Size = new System.Drawing.Size(613, 207);
+            this.dgvClientes.Size = new System.Drawing.Size(454, 207);
             this.dgvClientes.TabIndex = 19;
-            // 
-            // clnIdCli
-            // 
-            this.clnIdCli.Frozen = true;
-            this.clnIdCli.HeaderText = "ID";
-            this.clnIdCli.Name = "clnIdCli";
-            this.clnIdCli.ReadOnly = true;
-            this.clnIdCli.Width = 50;
-            // 
-            // clnNome
-            // 
-            this.clnNome.Frozen = true;
-            this.clnNome.HeaderText = "NOME";
-            this.clnNome.Name = "clnNome";
-            this.clnNome.ReadOnly = true;
-            this.clnNome.Width = 200;
-            // 
-            // clnCpf
-            // 
-            this.clnCpf.Frozen = true;
-            this.clnCpf.HeaderText = "CPF";
-            this.clnCpf.Name = "clnCpf";
-            this.clnCpf.ReadOnly = true;
-            // 
-            // clnEmail
-            // 
-            this.clnEmail.Frozen = true;
-            this.clnEmail.HeaderText = "EMAIL";
-            this.clnEmail.Name = "clnEmail";
-            this.clnEmail.ReadOnly = true;
-            this.clnEmail.Width = 200;
-            // 
-            // clnAtivo
-            // 
-            this.clnAtivo.Frozen = true;
-            this.clnAtivo.HeaderText = "ATIVO";
-            this.clnAtivo.Name = "clnAtivo";
-            this.clnAtivo.ReadOnly = true;
             // 
             // btnBuscar
             // 
@@ -582,7 +540,7 @@
             this.panel2.Controls.Add(this.label17);
             this.panel2.Location = new System.Drawing.Point(498, 315);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(343, 242);
+            this.panel2.Size = new System.Drawing.Size(329, 242);
             this.panel2.TabIndex = 24;
             // 
             // btn_removeTel
@@ -713,29 +671,9 @@
             this.txtIdEnd_db.TabIndex = 26;
             this.txtIdEnd_db.Visible = false;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label22);
-            this.panel3.Controls.Add(this.label18);
-            this.panel3.Controls.Add(this.btnBrowse);
-            this.panel3.Controls.Add(this.textBox1);
-            this.panel3.Location = new System.Drawing.Point(863, 315);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(298, 242);
-            this.panel3.TabIndex = 27;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(11, 86);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(51, 13);
-            this.label18.TabIndex = 2;
-            this.label18.Text = "Caminho:";
-            // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(247, 81);
+            this.btnBrowse.Location = new System.Drawing.Point(301, 216);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(41, 23);
             this.btnBrowse.TabIndex = 1;
@@ -743,28 +681,58 @@
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(65, 82);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(176, 20);
-            this.textBox1.TabIndex = 0;
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(11, 15);
+            this.label22.Location = new System.Drawing.Point(228, 221);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(69, 13);
             this.label22.TabIndex = 3;
             this.label22.Text = "Salvar dados";
             // 
+            // clnIdCli
+            // 
+            this.clnIdCli.Frozen = true;
+            this.clnIdCli.HeaderText = "ID";
+            this.clnIdCli.Name = "clnIdCli";
+            this.clnIdCli.ReadOnly = true;
+            this.clnIdCli.Width = 50;
+            // 
+            // clnNome
+            // 
+            this.clnNome.Frozen = true;
+            this.clnNome.HeaderText = "NOME";
+            this.clnNome.Name = "clnNome";
+            this.clnNome.ReadOnly = true;
+            // 
+            // clnCpf
+            // 
+            this.clnCpf.Frozen = true;
+            this.clnCpf.HeaderText = "CPF";
+            this.clnCpf.Name = "clnCpf";
+            this.clnCpf.ReadOnly = true;
+            // 
+            // clnEmail
+            // 
+            this.clnEmail.Frozen = true;
+            this.clnEmail.HeaderText = "EMAIL";
+            this.clnEmail.Name = "clnEmail";
+            this.clnEmail.ReadOnly = true;
+            // 
+            // clnAtivo
+            // 
+            this.clnAtivo.Frozen = true;
+            this.clnAtivo.HeaderText = "ATIVO";
+            this.clnAtivo.Name = "clnAtivo";
+            this.clnAtivo.ReadOnly = true;
+            // 
             // Cliente2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1236, 572);
-            this.Controls.Add(this.panel3);
+            this.ClientSize = new System.Drawing.Size(855, 572);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.txtIdEnd_db);
             this.Controls.Add(this.txtId_db);
             this.Controls.Add(this.panel2);
@@ -797,8 +765,6 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -823,11 +789,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dtpDatacad;
         private System.Windows.Forms.DataGridView dgvClientes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clnIdCli;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clnNome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clnCpf;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clnEmail;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clnAtivo;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btn_addTel;
         private System.Windows.Forms.Button btnClear;
@@ -864,12 +825,14 @@
         private System.Windows.Forms.ComboBox cmbDDD_tel;
         private System.Windows.Forms.Button btn_removeTel;
         private System.Windows.Forms.CheckBox chkAddend;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnBrowse;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.SaveFileDialog dialogoSalvarArquivo;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnIdCli;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnNome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnCpf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clnEmail;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clnAtivo;
     }
 }
 

@@ -512,7 +512,7 @@ namespace AuladeHoje
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             var savedlg = dialogoSalvarArquivo;
-            //savedlg.Filter = "Execel (*.xlsx)";
+            savedlg.Filter = "Excel (*.xlsx)|*.xlsx";
 
             if (txtId.Text == "") {
                 MessageBox.Show("Erro! Consulte um usuário primeiro");
@@ -574,7 +574,7 @@ namespace AuladeHoje
                 worksheetClientes.Columns().AdjustToContents();
 
 
-                Stream excelStream = File.Create(Path.GetFullPath($@"{Path.GetFullPath(savedlg.FileName)}.xlsx"));
+                Stream excelStream = File.Create(Path.GetFullPath($@"{Path.GetFullPath(savedlg.FileName)}"));
                 workbook.SaveAs(excelStream);
                 excelStream.Dispose();
             }
