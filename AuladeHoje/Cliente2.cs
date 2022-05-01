@@ -515,7 +515,7 @@ namespace AuladeHoje
             savedlg.Filter = "Excel (*.xlsx)|*.xlsx";
 
             if (txtId.Text == "") {
-                MessageBox.Show("Erro! Consulte um usuário primeiro");
+                MessageBox.Show("Erro! Consulte um cliente primeiro");
                 return;
             }
 
