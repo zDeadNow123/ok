@@ -186,6 +186,9 @@ namespace AuladeHoje
             chkAtivo.Enabled = false;
             btnInserir.Enabled = false;
             btnBrowse.Enabled = false;
+
+            chkAddend.Checked = false;
+            chkAddTel.Checked = false;
             return;
         }
 
@@ -470,11 +473,17 @@ namespace AuladeHoje
         private void chkAddend_CheckedChanged(object sender, EventArgs e)
         {
 
+
             if (chkAddend.Checked == true)
             {
                 txtCep.ReadOnly = false;
                 txtNumero.ReadOnly = false;
                 txtComplemento.ReadOnly = false;
+
+            if (txtId.Text.Length < 1) { 
+                btnGravar_end.Enabled = false;
+                return;
+            }
                 btnGravar_end.Enabled = true;
             }
             else
